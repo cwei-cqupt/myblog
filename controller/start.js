@@ -3,7 +3,7 @@
  */
 var http = require('http');
 var app = require('./router');
-require('./../controller/orion');
+require('./orion');
 http.createServer(function(req, res){
     var a = req.url;
     res.send = function(obj,str){

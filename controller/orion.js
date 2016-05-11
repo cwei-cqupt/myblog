@@ -1,7 +1,7 @@
 /**
  * Created by orionwei on 2016/5/11.
  */
-var app = require('./../model/router');
+var app = require('./router');
 app.get("/",function(req,res){
     app.render(req,res,'index.html');
 });
