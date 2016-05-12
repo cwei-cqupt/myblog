@@ -13,5 +13,5 @@ http.createServer(function(req, res){
         }
     };
     app.router(req.url,req,res);
-}).listen(3000,'127.0.0.1');
-console.log("正在监听3000端口");
+}).listen(3000);
+console.log("listening 3000");
