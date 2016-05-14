@@ -11,3 +11,6 @@ app.get("/a",function(req,res){
 app.get("/404",function(req,res){
     app.render(req,res,"404.html");
 });
+app.post("/a",function(req,res){
+    res.send({a:2},'json');
+});
