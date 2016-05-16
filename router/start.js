@@ -31,5 +31,5 @@ http.createServer(function(req, res){
         return;
     }
     app.router(req.url,req,res);
-}).listen(80);
+}).listen(3000);
 console.log("正在监听3000端口");
