@@ -31,5 +31,5 @@ http.createServer(function(req, res){
         return;
     }
     app.router(req.method.toLowerCase(),path.pathname,req,res);
-}).listen(3000);
+}).listen(80);
 console.log("listening 3000");
