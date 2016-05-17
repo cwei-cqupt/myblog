@@ -2,34 +2,46 @@
  * Created by orionwei on 2016/5/8.
  */
 var http = require('http');
-var app = require('./router');
+var app = require('./lib/router');
 var url = require('url');
 var querystring = require('querystring');
+var static = require("./lib/static");
 require('./orion');
+
+var port = 80;
+var path, pathname;
 http.createServer(function(req, res){
-    var path = url.parse(req.url);
-    res.send = function(obj,str){
-        if(str === 'json'){
-            res.writeHead(200,{'content-Type':'application/json'});
-            res.end(JSON.stringify(obj));
-        }
-    };
-    if(req.method === 'GET'){
-        req.query = querystring.parse(path.query);
-    }
-    else if(req.method === 'POST'){
-        req.setEncoding('utf-8');
-        var postData = "",params;
-        req.addListener("data", function (postDataChunk) {
-            postData += postDataChunk;
-        });
-        req.addListener("end", function () {
-            params = querystring.parse(postData);
-            req.query = params;
-            app.router(req.method.toLowerCase(),path.pathname,req,res);
-        });
+    path = url.parse(req.url);
+    pathname = path.pathname;
+    //console.log(static.test(pathname));
+    if(static.isStatic(pathname)){
+        static.find(req,res,pathname);
         return;
     }
-    app.router(req.url,req,res);
-}).listen(3000);
-console.log("正在监听3000端口");
+    else{
+        res.send = function(obj,str){
+            if(str === 'json'){
+                res.writeHead(200,{'content-Type':'application/json'});
+                res.end(JSON.stringify(obj));
+            }
+        };
+        if(req.method === 'GET'){
+            req.query = querystring.parse(path.query);
+        }
+        else if(req.method === 'POST'){
+            req.setEncoding('utf-8');
+            var postData = "",params;
+            req.addListener("data", function (postDataChunk) {
+                postData += postDataChunk;
+            });
+            req.addListener("end", function () {
+                params = querystring.parse(postData);
+                req.query = params;
+                app.router(req.method.toLowerCase(),pathname,req,res);
+            });
+            return;
+        }
+        app.router(req.method.toLowerCase(),pathname,req,res);
+    }
+}).listen(port);
+console.log("listening "+port);

@@ -1,0 +1,23 @@
+{
+  "name": "myblog",
+  "version": "1.0.0",
+  "description": "myblog",
+  "main": "index.js",
+  "dependencies": {
+    "mongoose": "^4.4.17"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orionwei/myblog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/orionwei/myblog/issues"
+  },
+  "homepage": "https://github.com/orionwei/myblog#readme"
+}
