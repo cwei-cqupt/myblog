@@ -3,6 +3,11 @@
  */
 var fs = require("fs");
 
+var conType={
+    stylesheet:"text/css",
+    javascript:"text/javascript",
+    image:"image/png"
+};
 var static = /\./;
 var staticSheetstyles = /.css/;
 var staticJavascripts = /.js/;
@@ -41,12 +46,10 @@ function file(pathname,res,str){
     })
 }
 function switchC(str){
-    switch(str){
-        case "stylesheet":
-            return "text/css";
-        case "javascript":
-            return "text/javascript";
-        default:
-            return "image";
+    if(!!conType[str]){
+        return conType[str];
+    }
+    else{
+        return "application/octet-stream";
     }
 }
