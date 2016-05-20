@@ -1,10 +1,10 @@
 /**
  * Created by orionwei on 2016/5/17.
  */
-#!/usr/bin/env node
+//#!/usr/bin/env node
 
 var fs = require("fs");
-vra arguments = process.argv;
+var args = process.argv;
 if(typeof process.argv[3] === 'undefined'){
 
 }
