@@ -66,7 +66,13 @@ var app = {
     staticFile:function(req,res,str,ext){
         //to Support large files
         var pathname = "public/"+str;
-        var raw = fs.createReadStream(pathname);
+        try{
+            var raw = fs.createReadStream(pathname);
+        }
+        catch (e){
+            res.writeHead(404,"Not Found");
+            res.end()
+        }
         var acceptEncoding = req.headers['accept-encoding'] || "";
         var matched = ext.match(compress);
         var expires = new Date();
