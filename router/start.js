@@ -2,20 +2,26 @@
  * Created by orionwei on 2016/5/8.
  */
 var http = require('http');
-var app = require('./lib/router');
 var url = require('url');
+var path = require("path");
 var querystring = require('querystring');
-var static = require("./lib/static");
-require('./orion');
+var app = require('./lib/router');
+var router = require('./orion');
 
-var port = 80;
-var path, pathname;
+
+var port = 80||process.argv[2],pathN;
+
 http.createServer(function(req, res){
-    path = url.parse(req.url);
-    pathname = path.pathname;
-    //console.log(static.test(pathname));
-    if(static.isStatic(pathname)){
-        static.find(req,res,pathname);
+    var pathname = url.parse(req.url);
+    pathN = pathname.pathname;
+    var ext = path.extname(pathN);
+    var headers = {
+        fileMatch: /^(gif|png|jpg|js|css)$/ig,
+        maxAge: 60 * 60
+    };
+    ext = ext ? ext.slice(1) : 'unknown';
+    if (ext.match(headers.fileMatch)) {
+        app.staticFile(req,res,pathN,ext);
         return;
     }
     else{
@@ -26,7 +32,7 @@ http.createServer(function(req, res){
             }
         };
         if(req.method === 'GET'){
-            req.query = querystring.parse(path.query);
+            req.query = querystring.parse(pathN.query);
         }
         else if(req.method === 'POST'){
             req.setEncoding('utf-8');
@@ -37,11 +43,11 @@ http.createServer(function(req, res){
             req.addListener("end", function () {
                 params = querystring.parse(postData);
                 req.query = params;
-                app.router(req.method.toLowerCase(),pathname,req,res);
+                app.router(req.method.toLowerCase(),pathN,req,res);
             });
             return;
         }
-        app.router(req.method.toLowerCase(),pathname,req,res);
+        app.router(req.method.toLowerCase(),pathN,req,res);
     }
 }).listen(port);
 console.log("listening "+port);
