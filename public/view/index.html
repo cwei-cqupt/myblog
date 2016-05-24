@@ -4,14 +4,57 @@
     <link rel="icon" href="images/icon.jpg">
     <link rel="stylesheet" href="stylesheets/style.css">
     <meta charset="UTF-8">
-    <title>魏丞的个人网站-orionwei</title>
+    <title>orionwei's website</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/lib/global.css">
+    <style>
+        body{
+            background-size: cover;
+            background: no-repeat center center;
+            background-color: #747674;
+            min-height: 1200px;
+            overflow: hidden;
+        }
+        div.main{
+            width:50%;
+            min-width: 500px;
+            height:300px;
+            border-radius:10px;
+        }
+        .a{
+            height:40px;
+            width:100%;
+            border:1px solid #747674;
+            opacity:1;
+            border-radius: 20px;
+            padding-left:40px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            color: #747674;
+        }
+        .a a{
+            line-height:40px;
+            text-decoration: none;
+            color: #747674;
+        }
+        .a a:hover{
+            text-decoration: underline;
+        }
+        div.main:hover{
+            opacity:0.8;
+        }
+    </style>
 </head>
 <body>
-<a href="404">asdasd</a>
-    <button>get</button>
-    <button>post</button>
-    <button>b</button>
-    <img src="images/icon.jpg" alt="">
+    <div class="main middle">
+        <div class="middle a">
+            <a href="myblog">myblog</a>/
+            <a href="https://github.com/orionwei" target="_blank">My-Github</a>
+        </div>
+    </div>
 </body>
-<script type="text/javascript" src="javascripts/index.js"></script>
+<script type="text/javascript" src="javascripts/lib/global.js"></script>
+<script>
+    document.getElementsByTagName("body")[0].style.backgroundImage = "url('images/indexbg.jpg')"
+</script>
 </html>
