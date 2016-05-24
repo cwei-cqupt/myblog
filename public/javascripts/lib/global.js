@@ -77,4 +77,6 @@ Object.prototype = {
         return this;
     }
 };
-      
+function bgimg(obj,url){
+    obj.style.backgroundImage = "url('"+url+"')"
+}
