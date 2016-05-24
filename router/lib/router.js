@@ -70,9 +70,9 @@ var app = {
                 res.setHeader("Cache-Control", "max-age=" + headers.maxAge);
                 //判断304
                 fs.stat(pathname, function (err, stat) {
-                    if(err){
+                    if (err) {
                         console.log(err);
-                    }else {
+                    } else {
                         lastModified = stat.mtime.toUTCString();
                         res.setHeader("Last-Modified", lastModified);
                         if (req.headers['if-modified-since'] && lastModified == req.headers['if-modified-since']) {
@@ -80,7 +80,7 @@ var app = {
                             res.end();
                         }
                         //如果不是304
-                        else{
+                        else {
                             if (matched && acceptEncoding.match(/\bgzip\b/)) {
                                 res.writeHead(200, "Ok", {
                                     'Content-Encoding': 'gzip'
@@ -96,7 +96,7 @@ var app = {
                                 res.writeHead(200, "Ok");
                                 raw.pipe(res);
                             }
-                        } 
+                        }
                     }
                 });
             }
