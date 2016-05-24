@@ -56,7 +56,6 @@ var app = {
     staticFile:function(req,res,str,ext){
         //to Support large files
         var pathname = "public/"+str;
-<<<<<<< HEAD
         fs.exists(pathname,function(exists){
             if(!exists){
                 res.writeHead(404,"Not Found");
@@ -97,48 +96,7 @@ var app = {
                                 res.writeHead(200, "Ok");
                                 raw.pipe(res);
                             }
-                        }
-=======
-        try{
-            var raw = fs.createReadStream(pathname);
-        }
-        catch (e){
-            res.writeHead(404,"Not Found");
-            res.end()
-        }
-        var acceptEncoding = req.headers['accept-encoding'] || "";
-        var matched = ext.match(compress);
-        var expires = new Date();
-        expires.setTime(expires.getTime() + headers.maxAge * 1000);
-        res.setHeader("Expires", expires.toUTCString());
-        res.setHeader("Cache-Control", "max-age=" + headers.maxAge);
-        //判断304
-        fs.stat(pathname, function (err, stat) {
-            if(err){
-                console.log(err);
-            }else {
-                lastModified = stat.mtime.toUTCString();
-                res.setHeader("Last-Modified", lastModified);
-                if (req.headers['if-modified-since'] && lastModified == req.headers['if-modified-since']) {
-                    res.writeHead(304, "Not Modified");
-                    res.end();
-                }
-                //如果不是304
-                else{
-                    if (matched && acceptEncoding.match(/\bgzip\b/)) {
-                        res.writeHead(200, "Ok", {
-                            'Content-Encoding': 'gzip'
-                        });
-                        raw.pipe(zlib.createGzip()).pipe(res);
-                    } else if (matched && acceptEncoding.match(/\bdeflate\b/)) {
-                        res.writeHead(200, "Ok", {
-                            'Content-Encoding': 'deflate'
-                        });
-                        raw.pipe(zlib.createDeflate()).pipe(res);
-                    } else {
-                        res.writeHead(200, "Ok");
-                        raw.pipe(res);
->>>>>>> origin/master
+                        } 
                     }
                 });
             }
