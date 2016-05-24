@@ -17,3 +17,8 @@ body{
     -o-transition: opacity 0.5s;
     transition: opacity 0.5s;
 }
+div.main_middle{
+    font-family: Cursive;
+    width:1200px;
+    margin:auto;
+}

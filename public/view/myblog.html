@@ -4,9 +4,155 @@
     <meta charset="UTF-8">
     <title>orionwei's blog</title>
     <link rel="icon" href="images/icon.jpg">
-    <link rel="stylesheet" href="stylesheets/lib/global.css">
+    <link rel="stylesheet" href="../stylesheets/lib/global.css">
+    <style>
+        div.header{
+            background:no-repeat center center;
+        }
+        div.header>div.main_middle{
+            height: 500px;
+        }
+        div.main_middle p.title{
+            color: #ffffff;
+            font-size: 50px;
+            font-weight: 900;
+            line-height: 440px;
+            text-align: center;
+            margin:0;
+        }
+        div.context{
+            border-bottom:1px solid #c7c9c7;
+        }
+        .div_inline{
+            display: inline-block;
+            vertical-align: top;
+        }
+        div.main_article{
+            width: 850px;
+            color: #747674;
+            padding-bottom: 20px;
+            margin-right: 40px;
+        }
+        div.article{
+            border-bottom:1px solid #c7c9c7;
+        }
+        div.article p{
+            color: #888a88;
+            margin:0;
+        }
+        div.right_side{
+            width:300px;
+            margin-top: 20px;
+        }
+        div.right_side div{
+            border-bottom:1px solid #c7c9c7;
+        }
+        div.right_side div img{
+            display: block;
+            margin:20px auto;
+        }
+        div.right_side p{
+            display: inline-block;
+            margin-right: 0;
+        }
+        div.right_side a{
+            color: #000;
+            -webkit-transition: color 0.2s;
+            -moz-transition: color 0.2s;
+            -ms-transition: color 0.2s
+            -o-transition: color 0.2s;
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+        div.right_side a:hover{
+            color:#b4b6b4;
+            text-decoration: underline;
+        }
+        .article h2,.article p{
+            color: #747674;
+            -webkit-transition: color 0.2s;
+            -moz-transition: color 0.2s;
+            -ms-transition: color 0.2s
+            -o-transition: color 0.2s;
+            transition: color 0.2s;
+        }
+        .article h2,.article p.main{
+            margin-top: 20px;
+        }
+        .article p.date{
+            margin-top: 30px;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .article h2:hover,.article p.main:hover{
+            color: #000;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .article:last-child{
+            border-bottom: none;
+        }
+        .footer{
+            height:80px;
+            width:100%;
+
+        }
+    </style>
 </head>
 <body>
-asdasdasd
+    <div class="header">
+        <div class="main_middle">
+            <p class="title">Mr.Decent-orionwei</p>
+        </div>
+    </div>
+    <div class="context main_middle">
+        <div class="main_article div_inline">
+            <div class="article">
+                <h2>第一篇博客</h2>
+                <p class="main">
+                    sdasd asidhj uaisghd jasghjgahsjfg shdjgfsdhjf ghkjasdf jsdkfh jksdhfa kjldshf kljdshf ljksdh fjksdh fjkha kjlsdhfkjadshf lkjsdfh lsdkjhf sjlkdhfa kljsdhf kjsda..
+                </p>
+                <p class="date">2016.5.24-16:45 by orionwei</p>
+            </div>
+            <div class="article">
+                <h2>第一篇博客</h2>
+                <p class="main">
+                    sdasd asidhj uaisghd jasghjgahsjfg shdjgfsdhjf ghkjasdf jsdkfh jksdhfa kjldshf kljdshf ljksdh fjksdh fjkha kjlsdhfkjadshf lkjsdfh lsdkjhf sjlkdhfa kljsdhf kjsda..
+                </p>
+                <p class="date">2016.5.24-16:45 by orionwei</p>
+            </div>
+            <div class="article">
+                <h2>第一篇博客</h2>
+                <p class="main">
+                    sdasd asidhj uaisghd jasghjgahsjfg shdjgfsdhjf ghkjasdf jsdkfh jksdhfa kjldshf kljdshf ljksdh fjksdh fjkha kjlsdhfkjadshf lkjsdfh lsdkjhf sjlkdhfa kljsdhf kjsda..
+                </p>
+                <p class="date">2016.5.24-16:45 by orionwei</p>
+            </div>
+        </div>
+        <div class="right_side div_inline">
+            <div>
+                <h2>About me</h2>
+                <img src="../images/icon.jpg" alt="" height="200" width="200">
+                <p>Not so smart, not so beautiful,just an ordinary people</p>
+            </div>
+            <div>
+                <h2>follow me</h2>
+                <p>Open Source:</p><a href="https://github.com/orionwei" target="_blank">github</a><br/>
+                <p>Weibo:</p><a href="http://weibo.com/5601962801" target="_blank">udf_w</a><br>
+                <p>QQ:673162780</p>
+            </div>
+            <div>
+                <h2>Article list</h2>
+
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+
+    </div>
 </body>
+<script type="text/javascript" src="../javascripts/lib/global.js"></script>
+<script>
+    bgimg(document.getElementsByClassName("header")[0],"../images/blogbg.jpg");
+</script>
 </html>
