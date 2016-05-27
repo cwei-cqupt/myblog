@@ -30,26 +30,28 @@ var OrionEditor = function(id){
 };
 OrionEditor.prototype = {
     initEditor:function(){
-        this.control();
+        this.framework();
     },
-    control:function(){
+    framework:function(){
+        this.obj.style.border = "1px solid #C4C6C4";
         this.obj.append("div",{
             className:"controller",
             style:{
-                height:"40px",
+                minHeight:"40px",
                 width:"100%",
-                backgroundColor:"#C4C6C4"
+                borderBottom:"1px solid #C4C6C4"
             }
         });
         this.obj.append("div",{
             className:"view",
             contentEditable:"true",
             style:{
+                overflowY:"auto",
                 outline:"none",
+                padding:"10px",
                 height:parseInt(this.obj.css("height"))-40+"px",
                 width:"100%",
-                boxSizing:"border-box",
-                border:"1px solid #C4C6C4"
+                boxSizing:"border-box"
             }
         })
     }
