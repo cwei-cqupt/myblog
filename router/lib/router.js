@@ -24,7 +24,6 @@ var app = {
         push('getArr', 'getFn', str, callback);
     },
     router: function (method, str, req, res) {
-        console.log(routerpool);
         var index = routerpool[method+"Arr"].indexOf(str);
         var fn = routerpool[method + "Fn"][index];
         if (index > -1) {
