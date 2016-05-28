@@ -5,10 +5,7 @@ var fs = require('fs');
 var zlib = require("zlib");
 var header = require("./header");
 var routerpool = {
-    getArr:[],
-    postArr:[],
-    getFn:[],
-    postFn:[]
+
 };
 var lastModified;
 var compress = /css|js|html/ig;
@@ -18,19 +15,17 @@ var headers = {
 };
 var app = {
     post: function (str, callback) {
-        push('postArr', 'postFn', str, callback);
+       routerpool[str] = callback;
     },
     get: function (str, callback) {
-        push('getArr', 'getFn', str, callback);
+        routerpool[str] = callback;
     },
     router: function (method, str, req, res) {
-        var index = routerpool[method+"Arr"].indexOf(str);
-        var fn = routerpool[method + "Fn"][index];
-        if (index > -1) {
-            fn(req, res);
+        if (routerpool[str]) {
+            routerpool[str](req,res);
         }
         else {
-            routerpool.getFn[routerpool.getArr.indexOf("/404")](req, res);
+            routerpool["/404"](req, res);
         }
     },
     render: function (req, res, str) {
@@ -42,6 +37,7 @@ var app = {
                 var raw = fs.createReadStream(pathname);
                 lastModified = stat.mtime.toUTCString();
                 res.setHeader("Last-Modified", lastModified);
+                res.setHeader("Cache-Control", "max-age="+headers.maxAge);
                 if (req.headers['if-modified-since'] && lastModified == req.headers['if-modified-since']) {
                     res.writeHead(304, "Not Modified");
                     res.end();
@@ -102,8 +98,4 @@ var app = {
         });
     }
 };
-function push(arr1,arr2,str,fn){
-    routerpool[arr1].push(str);
-    routerpool[arr2].push(fn);
-}
 module.exports = app;

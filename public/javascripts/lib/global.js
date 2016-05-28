@@ -50,8 +50,7 @@ var orion = {
         }
     }
 };
-Object.prototype = {
-    addListener:function(str,fn,boolean){
+Object.prototype.addListener = function(str,fn,boolean){
         if(this.length === 1){
             if(this.addEventListener){
                 this.addEventListener(str,fn,boolean);
@@ -68,15 +67,15 @@ Object.prototype = {
             })
         }
         return this;
-    },
-    append:function(str,obj){var object = document.createElement(str);
+    };
+    Object.prototype.append = function(str,obj){
+        var object = document.createElement(str);
         for(var prototype in obj){
-            this[prototype] = obj[prototype];
+            object[prototype] = obj[prototype];
         }
         this.appendChild(object);
         return this;
-    }
-};
+    };
 function bgimg(obj,url){
     obj.style.backgroundImage = "url('"+url+"')"
 }
