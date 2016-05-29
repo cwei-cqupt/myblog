@@ -50,32 +50,47 @@ var orion = {
         }
     }
 };
+Object.prototype.append=function (str, obj) {
+    var object = document.createElement(str);
+    object = each(obj, object);
+    this.appendChild(object);
+    return this;
+};
+Object.prototype.css=function (attr) {
+    if (this.currentStyle) {
+        return this.currentStyle[attr];
+    } else {
+        return getComputedStyle(this, false)[attr];
+    }
+};
+Object.prototype.appendC=function(str, obj){
+    var object = document.createElement(str);
+    object = each(obj, object);
+    this.appendChild(object);
+    return object;
+};
+Object.prototype.forEach = function(fn){
+    for(var i = 0;i < this.length;i++){
+        fn(this[i]);
+    }
+};
 Object.prototype.addListener = function(str,fn,boolean){
-        if(this.length === 1){
+    if(isNaN(parseInt(this.length))) {
+        if(this.addEventListener){
+            this.addEventListener(str,fn,boolean||false);
+        }else{
+            this.attachEvent(str,fn);
+        }
+    }else if(this.length > 0){
+        this.forEach(function(that){
             if(this.addEventListener){
-                this.addEventListener(str,fn,boolean);
+                that.addEventListener(str,fn,boolean||false);
             }else{
-                this.attachEvent(str,fn);
+                that.attachEvent(str,fn);
             }
-        }else if(this.length > 1){
-            this.forEach(function(that){
-                if(this.addEventListener){
-                    that.addEventListener(str,fn,boolean);
-                }else{
-                    that.attachEvent(str,fn);
-                }
-            })
-        }
-        return this;
-    };
-    Object.prototype.append = function(str,obj){
-        var object = document.createElement(str);
-        for(var prototype in obj){
-            object[prototype] = obj[prototype];
-        }
-        this.appendChild(object);
-        return this;
-    };
+        })
+    }
+};
 function bgimg(obj,url){
     obj.style.backgroundImage = "url('"+url+"')"
 }
