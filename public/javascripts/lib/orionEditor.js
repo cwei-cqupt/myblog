@@ -4,7 +4,7 @@
 'use strict';
 //jquery 命名空间。只暴露出一个OrionEditor。保证一些私有方法不会和其他人的代码冲突
 (function( global, factory ) {
-    //应该是为了可以应用在requirejs中
+    //应该是为了可以应用在requirejs等库中
     if ( typeof module === "object" && typeof module.exports === "object" ) {
         // For CommonJS and CommonJS-like environments where a proper window is present,
         // execute the factory and get jQuery
@@ -30,17 +30,6 @@
 }(typeof window !== "undefined" ? window : this, function(window, noGlobal){
     var OrionEditor = function(id){
         this.obj = document.getElementById(id);
-        //this.obj.addListener("mousedown",function(event){
-        //    var menu = document.getElementById("contextMenu");
-        //    var e = event||window.event;
-        //    if(e.button === 2){
-        //        menu.style.left = e.clientX+"px";
-        //        menu.style.top = e.clientY+"px";
-        //        menu.style.display = "block";
-        //    }else if(e.button === 0){
-        //        menu.style.display = "none";
-        //    }
-        //})
     };
     var menu;
     Element.prototype.append=function (str, obj) {
