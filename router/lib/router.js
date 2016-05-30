@@ -38,6 +38,7 @@ var app = {
                 lastModified = stat.mtime.toUTCString();
                 res.setHeader("Last-Modified", lastModified);
                 res.setHeader("Cache-Control", "max-age="+headers.maxAge);
+                res.setHeader('content-Type', header[matched]);
                 if (req.headers['if-modified-since'] && lastModified == req.headers['if-modified-since']) {
                     res.writeHead(304, "Not Modified");
                     res.end();
@@ -78,21 +79,17 @@ var app = {
                         else {
                             if (matched && acceptEncoding.match(/\bgzip\b/)) {
                                 res.writeHead(200, "Ok", {
-                                    'Content-Encoding': 'gzip',
-                                    'content-Type': header[matched]
+                                    'Content-Encoding': 'gzip'
                                 });
                                 raw.pipe(zlib.createGzip()).pipe(res);
 
                             } else if (matched && acceptEncoding.match(/\bdeflate\b/)) {
                                 res.writeHead(200, "Ok", {
-                                    'Content-Encoding': 'deflate',
-                                    'content-Type': header[matched]
+                                    'Content-Encoding': 'deflate'
                                 });
                                 raw.pipe(zlib.createDeflate()).pipe(res);
                             } else {
-                                res.writeHead(200, "Ok",{
-                                    'content-Type': header[matched]
-                                });
+                                res.writeHead(200, "Ok");
                                 raw.pipe(res);
                             }
                         }
