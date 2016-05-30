@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ef7f92bb-d8ca-474c-8d6e-933e004a6db1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/router/lib/router.js" afterPath="$PROJECT_DIR$/router/lib/router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/router/orion.js" afterPath="$PROJECT_DIR$/router/orion.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/lib/orionEditor.js" afterPath="$PROJECT_DIR$/public/javascripts/lib/orionEditor.js" />
     </list>
     <ignored path="myblog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,14 +44,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="orionEditor.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="orionEditor.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/javascripts/lib/orionEditor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="212" column="34" selection-start-line="212" selection-start-column="34" selection-end-line="212" selection-end-column="34" />
+            <state vertical-scroll-proportion="2.0373514">
+              <caret line="182" column="17" selection-start-line="182" selection-start-column="17" selection-end-line="182" selection-end-column="17" />
               <folding>
                 <element signature="e#0#44#0" expanded="false" />
-                <marker date="1464592414598" expanded="true" signature="4377:4385" placeholder="..." />
+                <marker date="1464596023549" expanded="true" signature="4377:4385" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -68,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="router.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="router.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/router/lib/router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44142616">
-              <caret line="60" column="57" selection-start-line="60" selection-start-column="57" selection-end-line="60" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="96" column="46" selection-start-line="96" selection-start-column="46" selection-end-line="96" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -202,10 +201,10 @@
         <option value="I:/易扬科技传媒/jquery-1.11.1.js" />
         <option value="$PROJECT_DIR$/router/lib/header.js" />
         <option value="$PROJECT_DIR$/router/lib/mongodb.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/lib/orionEditor.js" />
         <option value="$PROJECT_DIR$/public/view/index.html" />
         <option value="$PROJECT_DIR$/router/orion.js" />
         <option value="$PROJECT_DIR$/router/lib/router.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/lib/orionEditor.js" />
       </list>
     </option>
   </component>
@@ -215,7 +214,7 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="1358" />
     <option name="y" value="-8" />
     <option name="width" value="1216" />
     <option name="height" value="1906" />
@@ -543,14 +542,20 @@
       <option name="project" value="LOCAL" />
       <updated>1464592864673</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fix&#10;">
+      <created>1464593251218</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1464593251218</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1216" height="1906" extended-state="6" />
+    <frame x="1358" y="-8" width="1216" height="1906" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18583333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18583333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899627" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
@@ -1004,22 +1009,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/lib/orionEditor.js">
+    <entry file="file://$PROJECT_DIR$/router/lib/router.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="212" column="34" selection-start-line="212" selection-start-column="34" selection-end-line="212" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#44#0" expanded="false" />
-            <marker date="1464592414598" expanded="true" signature="4377:4385" placeholder="..." />
-          </folding>
+          <caret line="96" column="46" selection-start-line="96" selection-start-column="46" selection-end-line="96" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/router/lib/router.js">
+    <entry file="file://$PROJECT_DIR$/public/javascripts/lib/orionEditor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44142616">
-          <caret line="60" column="57" selection-start-line="60" selection-start-column="57" selection-end-line="60" selection-end-column="57" />
-          <folding />
+        <state vertical-scroll-proportion="2.0373514">
+          <caret line="182" column="17" selection-start-line="182" selection-start-column="17" selection-end-line="182" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#44#0" expanded="false" />
+            <marker date="1464596023549" expanded="true" signature="4377:4385" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

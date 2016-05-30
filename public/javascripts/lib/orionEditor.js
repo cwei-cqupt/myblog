@@ -240,6 +240,9 @@
             }).addListener('mousedown',function(event){
                 var e = event||window.event;
                 e.stopPropagation();
+                //this.style.display = 'none';
+            }).addListener('click',function(){
+                this.style.display = "none";
             });
         },
         moreEditor:function(){
