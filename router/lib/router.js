@@ -78,17 +78,21 @@ var app = {
                         else {
                             if (matched && acceptEncoding.match(/\bgzip\b/)) {
                                 res.writeHead(200, "Ok", {
-                                    'Content-Encoding': 'gzip'
+                                    'Content-Encoding': 'gzip',
+                                    'content-Type': header[matched]
                                 });
                                 raw.pipe(zlib.createGzip()).pipe(res);
 
                             } else if (matched && acceptEncoding.match(/\bdeflate\b/)) {
                                 res.writeHead(200, "Ok", {
-                                    'Content-Encoding': 'deflate'
+                                    'Content-Encoding': 'deflate',
+                                    'content-Type': header[matched]
                                 });
                                 raw.pipe(zlib.createDeflate()).pipe(res);
                             } else {
-                                res.writeHead(200, "Ok");
+                                res.writeHead(200, "Ok",{
+                                    'content-Type': header[matched]
+                                });
                                 raw.pipe(res);
                             }
                         }
