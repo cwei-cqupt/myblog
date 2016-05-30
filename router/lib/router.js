@@ -38,7 +38,6 @@ var app = {
                 lastModified = stat.mtime.toUTCString();
                 res.setHeader("Last-Modified", lastModified);
                 res.setHeader("Cache-Control", "max-age="+headers.maxAge);
-                res.setHeader('content-Type', header[matched]);
                 if (req.headers['if-modified-since'] && lastModified == req.headers['if-modified-since']) {
                     res.writeHead(304, "Not Modified");
                     res.end();
@@ -64,6 +63,7 @@ var app = {
                 expires.setTime(expires.getTime() + headers.maxAge * 1000);
                 res.setHeader("Expires", expires.toUTCString());
                 res.setHeader("Cache-Control", "max-age=" + headers.maxAge);
+                res.setHeader('content-Type', header[matched]);
                 //判断304
                 fs.stat(pathname, function (err, stat) {
                     if (err) {
