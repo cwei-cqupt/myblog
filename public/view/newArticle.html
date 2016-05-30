@@ -4,36 +4,39 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+        div.b{
+            width:900px;
+            margin:20px auto;
+        }
         #a{
             /*border: 1px solid #929492;*/
             height:500px;
             width:100%;
-            color: ;
-        }
-        #a p{
-            font-family: Cursive;
-            margin:0;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-<label >title<input type="text"></label>
-<div id="a"></div>
+<div class="b">
+    <div id="a"></div>
+</div>
+
 </body>
 <script type="text/javascript" src="../javascripts/lib/orionEditor.js"></script>
 <script>
     var a = new OrionEditor("a");
-    a.initEditor();
-    var div = document.getElementById("a");
-    div.addEventListener("mousemove",function(e){
-        var event = e||window.event;
+    var b = document.getElementsByClassName("b");
+    a.initEditor({
+        control:false
     });
-//    div.onblur = function(){
-//        var p = document.createElement("p");
-//        p.innerHTML = this.innerHTML;
-//        this.innerHTML = "";
-//        this.appendChild(p);
-//        this.onblur = null;
-//    };
+//    a.obj.addListener("keyup",function(event){
+//        var e = event||window.event;
+//        if(e.keyCode === 8){
+//            console.log(this.innerHTML);
+//            if(this.innerHTML === ""){
+//                console.log(1);
+//            }
+//        }
+//    })
 </script>
 </html>
