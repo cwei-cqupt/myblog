@@ -58,8 +58,9 @@ var app = {
             }else{
                 var raw = fs.createReadStream(pathname);
                 var acceptEncoding = req.headers['accept-encoding'] || "";
-                var matched = ext.match(compress);
+                var matched = ext.match(headers.fileMatch);
                 var expires = new Date();
+                console.log(matched[0]);
                 expires.setTime(expires.getTime() + headers.maxAge * 1000);
                 res.setHeader("Expires", expires.toUTCString());
                 res.setHeader("Cache-Control", "max-age=" + headers.maxAge);
@@ -78,17 +79,21 @@ var app = {
                         else {
                             if (matched && acceptEncoding.match(/\bgzip\b/)) {
                                 res.writeHead(200, "Ok", {
-                                    'Content-Encoding': 'gzip'
+                                    'Content-Encoding': 'gzip',
+                                    'content-Type':header[matched[0]]
                                 });
                                 raw.pipe(zlib.createGzip()).pipe(res);
 
                             } else if (matched && acceptEncoding.match(/\bdeflate\b/)) {
                                 res.writeHead(200, "Ok", {
-                                    'Content-Encoding': 'deflate'
+                                    'Content-Encoding': 'deflate',
+                                    'content-Type':header[matched[0]]
                                 });
                                 raw.pipe(zlib.createDeflate()).pipe(res);
                             } else {
-                                res.writeHead(200, "Ok");
+                                res.writeHead(200, "Ok",{
+                                    'content-Type':header[matched[0]]
+                                });
                                 raw.pipe(res);
                             }
                         }

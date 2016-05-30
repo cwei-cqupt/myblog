@@ -2,7 +2,7 @@
  * Created by orionwei on 2016/5/11.
  */
 var app = require('./lib/router');
-var article = require('./lib/mongodb');
+//var article = require('./lib/mongodb');
 
 
 app.get("/",function(req,res){
