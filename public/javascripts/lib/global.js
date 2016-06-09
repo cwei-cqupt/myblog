@@ -5,7 +5,7 @@
 var orion = {
     id:/#/,
     classN:/\./,
-    ajax:function(url,method,data,fn){
+    ajax:function(url,method,data,fn,setheader){
         var xmlhttp=null;
         if (window.XMLHttpRequest) {// code for all new browsers
             xmlhttp=new XMLHttpRequest();
@@ -16,6 +16,8 @@ var orion = {
         if (xmlhttp!=null) {
             xmlhttp.onreadystatechange=state_Change;
             xmlhttp.open(method,url,true);
+            if(setheader)
+                setheader(xmlhttp);
             xmlhttp.send(data);
         }
         else {

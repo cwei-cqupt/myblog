@@ -4,9 +4,8 @@
 var fs = require('fs');
 var zlib = require("zlib");
 var header = require("./header");
-var routerpool = {
 
-};
+var routerpool = {};
 var lastModified;
 var compress = /css|js|html/ig;
 var headers = {
@@ -60,7 +59,6 @@ var app = {
                 var acceptEncoding = req.headers['accept-encoding'] || "";
                 var matched = ext.match(headers.fileMatch);
                 var expires = new Date();
-                console.log(matched[0]);
                 expires.setTime(expires.getTime() + headers.maxAge * 1000);
                 res.setHeader("Expires", expires.toUTCString());
                 res.setHeader("Cache-Control", "max-age=" + headers.maxAge);
@@ -101,6 +99,9 @@ var app = {
                 });
             }
         });
+    },
+    update:function(req,res){
+
     }
 };
 module.exports = app;

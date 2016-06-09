@@ -7,6 +7,8 @@ var path = require("path");
 var querystring = require('querystring');
 var app = require('./lib/router');
 var router = require('./orion');
+var multiparty = require("multiparty");
+var util = require("util");
 
 
 var port = 80||process.argv[2],pathN;
@@ -35,17 +37,73 @@ http.createServer(function(req, res){
             req.query = querystring.parse(pathN.query);
         }
         else if(req.method === 'POST'){
-            req.setEncoding('utf-8');
-            var postData = "",params;
-            req.addListener("data", function (postDataChunk) {
-                postData += postDataChunk;
-            });
-            req.addListener("end", function () {
-                params = querystring.parse(postData);
-                req.query = params;
-                app.router(req.method.toLowerCase(),pathN,req,res);
-            });
-            return;
+            if(pathname === "/addArticle"){
+
+            }else{
+                req.setEncoding('utf-8');
+                var postData = "",params;
+                if(req.headers['content-type'] !== 'multipart/form-data'){
+                    req.addListener("data", function (postDataChunk) {
+                        postData += postDataChunk;
+                    });
+                    req.addListener("end", function () {
+                        params = querystring.parse(postData);
+                        req.query = params;
+                        app.router(req.method.toLowerCase(),pathN,req,res);
+                    });
+                }else if(req.headers['content-type'] === 'multipart/form-data'){
+                    var form = new multiparty.Form({
+                        encoding:"utf-8",
+                        uploadDir:"public/images",
+                        maxFilesSize:2 * 1024 * 1024
+                    });
+                    //form.on('error', function(err) {
+                    //    console.log('Error parsing form: ' + err.stack);
+                    //});
+                    //
+                    //form.on('part', function(part) {
+                    //    // You *must* act on the part by reading it
+                    //    // NOTE: if you want to ignore it, just call "part.resume()"
+                    //
+                    //    if (!part.filename) {
+                    //        // filename is not defined when this is a field and not a file
+                    //        console.log('got field named ' + part.name);
+                    //        // ignore field's content
+                    //        part.resume();
+                    //    }
+                    //
+                    //    if (part.filename) {
+                    //        // filename is defined when this is a file
+                    //        count++;
+                    //        console.log('got file named ' + part.name);
+                    //        // ignore file's content here
+                    //        part.resume();
+                    //    }
+                    //
+                    //    part.on('error', function(err) {
+                    //        // decide what to do
+                    //    });
+                    //});
+                    //form.on('close', function() {
+                    //    console.log('Upload completed!');
+                    //    //res.setHeader('text/plain');
+                    //    //res.end('Received ' + count + ' files');
+                    //});
+                    //console.log(form.parse);
+                    console.log(req);
+                    form.parse(req, function(err, fields, files) {
+                        //console.log(files);
+                        //console.log(files.path);
+                        //同步重命名文件名
+                        //fs.renameSync(files.path,files.originalFilename);
+                        res.writeHead(200, {'content-type': 'text/plain'});
+                        res.write('received upload:\n\n');
+                        res.end(util.inspect({fields: fields, files: files}));
+                        //res.end();
+                    });
+                }
+                return;
+            }
         }
         app.router(req.method.toLowerCase(),pathN,req,res);
     }
