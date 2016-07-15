@@ -1,0 +1,190 @@
+module.js:341
+    throw err;
+    ^
+
+Error: Cannot find module '/home/myblog/router/start.js'
+    at Function.Module._resolveFilename (module.js:339:15)
+    at Function.Module._load (module.js:290:25)
+    at Function.Module.runMain (module.js:447:10)
+    at startup (node.js:146:18)
+    at node.js:404:3
+listening 80
+listening 80
+listening 80
+_http_outgoing.js:344
+    throw new Error('`value` required in setHeader("' + name + '", value).');
+    ^
+
+Error: `value` required in setHeader("content-Type", value).
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:344:11)
+    at ServerResponse.writeHead (_http_server.js:180:21)
+    at /root/workspace/myblog/router/lib/router.js:93:37
+    at FSReqWrap.oncomplete (fs.js:82:15)
+listening 80
+/root/workspace/myblog/router/lib/router.js:41
+                res.setHeader('content-Type', header[matched]);
+                                                     ^
+
+ReferenceError: matched is not defined
+    at /root/workspace/myblog/router/lib/router.js:41:54
+    at FSReqWrap.oncomplete (fs.js:82:15)
+listening 80
+_http_outgoing.js:344
+    throw new Error('`value` required in setHeader("' + name + '", value).');
+    ^
+
+Error: `value` required in setHeader("content-Type", value).
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:344:11)
+    at /root/workspace/myblog/router/lib/router.js:66:21
+    at FSReqWrap.cb [as oncomplete] (fs.js:216:19)
+listening 80
+listening 80
+css
+css
+js
+jpg
+css
+css
+js
+jpg
+css
+css
+js
+jpg
+css
+jpg
+js
+jpg
+css
+css
+js
+jpg
+jpg
+css
+jpg
+js
+jpg
+css
+css
+js
+jpg
+jpg
+jpg
+css
+css
+js
+jpg
+jpg
+jpg
+css
+js
+jpg
+jpg
+css
+jpg
+js
+jpg
+css
+css
+js
+jpg
+jpg
+jpg
+css
+js
+css
+css
+js
+css
+css
+js
+css
+css
+js
+jpg
+jpg
+jpg
+css
+js
+css
+jpg
+js
+js
+css
+css
+js
+jpg
+jpg
+jpg
+css
+css
+js
+jpg
+jpg
+jpg
+css
+css
+js
+jpg
+jpg
+jpg
+css
+css
+js
+jpg
+jpg
+css
+css
+js
+jpg
+js
+css
+jpg
+jpg
+js
+css
+jpg
+jpg
+css
+css
+js
+jpg
+css
+jpg
+js
+jpg
+css
+css
+js
+jpg
+css
+jpg
+js
+jpg
+css
+css
+js
+jpg
+jpg
+css
+js
+jpg
+jpg
+js
+css
+css
+js
+jpg
+css
+css
+js
+jpg
+jpg
+jpg
+css
+css
+js
+jpg
+jpg
+jpg
+js
