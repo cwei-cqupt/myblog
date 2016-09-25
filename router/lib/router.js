@@ -14,10 +14,12 @@ var headers = {
 };
 var app = {
     post: function (str, callback) {
-       routerpool[str] = callback;
+        routerpool[str] = callback;
+        return this;
     },
     get: function (str, callback) {
         routerpool[str] = callback;
+        return this;
     },
     router: function (method, str, req, res) {
         if (routerpool[str]) {

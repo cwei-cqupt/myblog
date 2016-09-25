@@ -4,10 +4,12 @@
   "description": "myblog",
   "main": "index.js",
   "dependencies": {
-    "mongoose": "^4.4.17"
+    "mongoose": "^4.4.17",
+    "multiparty": "^4.1.2"
   },
   "devDependencies": {},
   "scripts": {
+    "start": "nohup node router/start.js 3000 &",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -4,19 +4,21 @@
 var app = require('./lib/router');
 //var article = require('./lib/mongodb');
 var fs = require("fs");
-
+var exec = require('child_process').exec;
 
 app.get("/",function(req,res){
     app.render(req,res,'index.html');
-});
-app.get("/myblog",function(req,res){
+})
+.get("/myblog",function(req,res){
     app.render(req,res,'myblog.html');
-});
-app.get("/article",function(req,res){
-
+})
+.get("/article",function(req,res){
     app.render(req,res,'newArticle.html',{});
-});
-app.post("/addArticle",function(req,res){
+})
+.get('/test', function(req, res) {
+    app.render(req, res, 'test.html');
+})
+.post("/addArticle",function(req,res){
     //req.once('data',function(data){
     //    //console.log(data);
     //    var write = fs.createWriteStream("public/image/a.pdf");
@@ -32,10 +34,26 @@ app.post("/addArticle",function(req,res){
     //write.write(buffer);
     //write.end();
     res.send({url:"public/image/a.pdf"},'json');
-});
-app.get("/404",function(req,res){
+})
+.get("/404",function(req,res){
     app.render(req,res,"404.html",{express:1});
-});
-app.post("/a",function(req,res){
+})
+.post("/a",function(req,res){
     res.send({a:2},'json');
+})
+.get('/haveatry', function(req,res) {
+    res.send({v:3},'json');
+})
+.post('/reloadserver', function(req,res){
+    console.log(req.query);
+    fs.writeFile('test.sh','#!bin/sh\necho \''+req.query.config+'\'', function() {
+        var std = exec('sh test.sh');
+        var dataresend = '';
+        std.stdout.on('data', function(data) {
+            dataresend += data
+        });
+        std.on('exit', function(code) {
+            res.send({data:dataresend},'json');
+        });
+    });
 });

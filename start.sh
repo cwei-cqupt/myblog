@@ -2,9 +2,9 @@
 
 
 git pull
-expressroute=/root/workspace/myblog/router/start.js
+expressroute=~/workspace/myblog/router/start.js
 expresspid=`ps -axu|awk '/node/{print $2}'`
-if [ -z $expresspid ];
+if [ -n $expresspid ];
 then
     nohup node $expressroute &
 else

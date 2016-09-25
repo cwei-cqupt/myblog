@@ -11,7 +11,7 @@ var multiparty = require("multiparty");
 var util = require("util");
 
 
-var port = 80||process.argv[2],pathN;
+var port = process.argv[2] || 80,pathN;
 
 http.createServer(function(req, res){
     var pathname = url.parse(req.url);
@@ -21,8 +21,16 @@ http.createServer(function(req, res){
         fileMatch: /^(gif|png|jpg|js|css)$/ig,
         maxAge: 60 * 60
     };
-    ext = ext ? ext.slice(1) : 'unknown';
+    var staticFile = ["stylesheets","javascripts","images"];
+    ext = ext ? ext.slice(1) : 'unknown:';
     if (ext.match(headers.fileMatch)) {
+        for(var i = 0;i < staticFile.length;i++){
+            if(pathN.indexOf(staticFile[i])> -1){
+                pathN = pathN.split("/");
+                pathN = staticFile[i]+"/"+pathN.slice(2,pathN.length).join("/");
+                break;
+            }
+        }
         app.staticFile(req,res,pathN,ext);
         return;
     }
