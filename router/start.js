@@ -19,7 +19,7 @@ http.createServer(function(req, res){
     console.log(pathN);
     var ext = path.extname(pathN);
     var headers = {
-        fileMatch: /^(gif|png|jpg|js|css)$/ig,
+        fileMatch: /^(gif|png|jpg|js|css|html)$/ig,
         maxAge: 60 * 60
     };
     var staticFile = ["stylesheets","javascripts","images"];
