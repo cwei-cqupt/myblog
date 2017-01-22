@@ -28,7 +28,9 @@
 
 // Pass this if window is not defined yet
 }(typeof window !== "undefined" ? window : this, function(window, noGlobal){
-    var isShow = false,control;
+    var isShow = false,
+        control,
+        controlShow = false;
     var OrionEditor = function(id){
         this.obj = document.getElementById(id);
     };
@@ -93,12 +95,12 @@
     };
     Element.prototype.fade = function(){
         var that = this;
-        if(this.css("display") === "none"){
+        if(this.style.display === "none"){
             this.style.display = "block";
             animate(0,100,function(n){
                 that.style.opacity = n/100;
             })
-        }else if(this.css("display") === "block"){
+        }else{
             animate(50,0,function(n){
                 that.style.opacity = n/50;
             },function(){
@@ -106,83 +108,82 @@
             })
         }
     };
-    function animate(from,to,fn,cb){
-//      var requestAnimationFrame = window.requestAnimationFrame||window.mozRequestAnimationFrame||window.webkitRequestAnimationFrame;
-        var n = parseInt(from);
-        var t = parseInt(to);
-        var timer;
-        function v(){
-            clearTimeout(timer);
-            fn(n);
-            if(n > t) {
-                n--;
-                timer = setTimeout(v,1);
+    var animate = function(from,to,fn,cb){
+    //      var requestAnimationFrame = window.requestAnimationFrame||window.mozRequestAnimationFrame||window.webkitRequestAnimationFrame;
+            var n = parseInt(from);
+            var t = parseInt(to);
+            var timer;
+            function v(){
+                clearTimeout(timer);
+                fn(n);
+                if(n > t) {
+                    n--;
+                    timer = setTimeout(v,1);
+                }
+                else if(n < t) {
+                    n++;
+                    timer = setTimeout(v,1);
+                }
+                else{
+                    if(cb){
+                        cb();
+                    }
+                }
             }
-            else if(n < t) {
-                n++;
-                timer = setTimeout(v,1);
+            v();
+        },
+        //deep traversal;
+        each = function(obj,object){
+            for(var prototype in obj){
+                if(typeof obj[prototype] === "string")
+                    object[prototype] = obj[prototype];
+                else if(typeof obj[prototype] === "object"){
+                    each(obj[prototype],object[prototype]);
+                }
+            }
+            return object;
+        },
+        // the same insert so abstract a fn
+        append = function(object,str,obj) {
+            object.appendC(str, obj).addListener("keyup", function (event) {
+                var e = event || window.event;
+                if (e.keyCode === 8) {
+                    if (this.innerHTML === "") {
+                        this.innerHTML = "<p  style='margin:0'><br></p>"
+                    }
+                }
+            }).appendC("p", {
+                style: {
+                    margin: "0"
+                }
+            }).appendC("br");
+            return object;
+        },
+        getxy = function(first, number, size, width, height){
+            if(bom.indexOf("MSIE") >= 0||bom.indexOf("Trident") >= 0){
+                return {
+                    x:first*size*4/3+number*size*4/6-(width/2),
+                    y:height+15
+                }
             }
             else{
-                if(cb){
-                    cb();
+                return {
+                    x:first*size+number*size/2-(width/2),
+                    y:height+15
                 }
             }
-        }
-        v();
-    }
-    //deep traversal;
-    function each(obj,object){
-        for(var prototype in obj){
-            if(typeof obj[prototype] === "string")
-                object[prototype] = obj[prototype];
-            else if(typeof obj[prototype] === "object"){
-                each(obj[prototype],object[prototype]);
-            }
-        }
-        return object;
-    }
-    // the same insert so abstract a fn
-    function append(object,str,obj) {
-        object.appendC(str, obj).addListener("keyup", function (event) {
-            var e = event || window.event;
-            if (e.keyCode === 8) {
-                if (this.innerHTML === "") {
-                    this.innerHTML = "<p  style='margin:0'><br></p>"
-                }
-            }
-        }).appendC("p", {
-            style: {
-                margin: "0"
-            }
-        }).appendC("br");
-        return object;
-    }
-    function getxy(first, number, size, width, height){
-        if(bom.indexOf("MSIE") >= 0||bom.indexOf("Trident") >= 0){
-            return {
-                x:first*size*4/3+number*size*4/6-(width/2),
-                y:height+15
-            }
-        }
-        else{
-            return {
-                x:first*size+number*size/2-(width/2),
-                y:height+15
-            }
-        }
 
-    }
-    function getByteLen(val) {
-        var len = 0,valen = val.length;
-        for (var i = 0; i < valen; i++) {
-            if (val[i].match(/[^x00-xff]/ig) != null) //全角
-                len += 2;
-            else
-                len += 1;
-        }
-        console.log(len);
-        return len/2;
-    }
+        },
+        getByteLen = function(val) {
+            var len = 0,valen = val.length;
+            for (var i = 0; i < valen; i++) {
+                if (val[i].match(/[^x00-xff]/ig) != null) //全角
+                    len += 2;
+                else
+                    len += 1;
+            }
+            return len/2;
+        };
     OrionEditor.prototype = {
         initEditor:function(obj){
             var object = obj?obj:{control:false};
@@ -266,18 +267,7 @@
                     }
                 });
             }
-            append(this.obj,"div",initData).append("div",{
-                className:"control",
-                style:{
-                    backgroundColor:"black",
-                    height:"40px",
-                    width:"100px",
-                    position:"absolute",
-                    display:"none"
-                }
-            }, function(el){
-                control = el;
-            }).addListener("mouseup",function(event){
+            document.addListener("click",function(event){
                 var e = event || window.event,a, fontSize,xy;
                 if(e.button === 0){
                     if(window.getSelection) {
@@ -292,13 +282,24 @@
                         }else{
                             xy = getxy(getByteLen(a.anchorNode.data.substr(0,a.anchorOffset)), getByteLen(a.anchorNode.data.substr(a.anchorOffset,a.focusOffset-a.anchorOffset)), fontSize, 100, 40)
                         }
-                        console.log(a.focusNode.parentNode.css("fontFamily"));
                         control.style.left = a.focusNode.parentNode.offsetLeft+xy.x+"px";
                         control.style.top = a.focusNode.parentNode.offsetTop-xy.y+"px";
                         control.fade();
                     }
                 }
 
+            });
+            append(this.obj,"div",initData).append("div",{
+                className:"control",
+                style:{
+                    backgroundColor:"black",
+                    height:"40px",
+                    width:"100px",
+                    position:"absolute",
+                    display:"none"
+                }
+            }, function(el){
+                control = el;
             }).appendC("input",{
                 id:"contextMenu",
                 type:"file",
