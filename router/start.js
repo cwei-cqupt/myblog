@@ -16,6 +16,7 @@ var port = process.argv[2] || 80,pathN;
 http.createServer(function(req, res){
     var pathname = url.parse(req.url);
     pathN = pathname.pathname;
+    console.log(pathN);
     var ext = path.extname(pathN);
     var headers = {
         fileMatch: /^(gif|png|jpg|js|css)$/ig,

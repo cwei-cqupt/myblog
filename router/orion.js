@@ -56,4 +56,7 @@ app.get("/",function(req,res){
             res.send({data:dataresend},'json');
         });
     });
+})
+.post("/?", function(req, res){
+    console.log(req.query);
 });
