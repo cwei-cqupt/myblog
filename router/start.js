@@ -16,26 +16,17 @@ var port = process.argv[2] || 80,pathN;
 http.createServer(function(req, res){
     var pathname = url.parse(req.url);
     pathN = pathname.pathname;
-    console.log(pathN);
     var ext = path.extname(pathN);
     var headers = {
         fileMatch: /^(gif|png|jpg|js|css|html)$/ig,
         maxAge: 60 * 60
     };
-    var staticFile = ["stylesheets","javascripts","images"];
     ext = ext ? ext.slice(1) : 'unknown:';
     if (ext.match(headers.fileMatch)) {
-        for(var i = 0;i < staticFile.length;i++){
-            if(pathN.indexOf(staticFile[i])> -1){
-                pathN = pathN.split("/");
-                pathN = staticFile[i]+"/"+pathN.slice(2,pathN.length).join("/");
-                break;
-            }
-        }
         app.staticFile(req,res,pathN,ext);
-        return;
-    }
-    else{
+    } else if() {
+
+    } else {
         res.send = function(obj,str){
             if(str === 'json'){
                 res.writeHead(200,{'content-Type':'application/json'});
@@ -66,49 +57,10 @@ http.createServer(function(req, res){
                         uploadDir:"public/images",
                         maxFilesSize:2 * 1024 * 1024
                     });
-                    //form.on('error', function(err) {
-                    //    console.log('Error parsing form: ' + err.stack);
-                    //});
-                    //
-                    //form.on('part', function(part) {
-                    //    // You *must* act on the part by reading it
-                    //    // NOTE: if you want to ignore it, just call "part.resume()"
-                    //
-                    //    if (!part.filename) {
-                    //        // filename is not defined when this is a field and not a file
-                    //        console.log('got field named ' + part.name);
-                    //        // ignore field's content
-                    //        part.resume();
-                    //    }
-                    //
-                    //    if (part.filename) {
-                    //        // filename is defined when this is a file
-                    //        count++;
-                    //        console.log('got file named ' + part.name);
-                    //        // ignore file's content here
-                    //        part.resume();
-                    //    }
-                    //
-                    //    part.on('error', function(err) {
-                    //        // decide what to do
-                    //    });
-                    //});
-                    //form.on('close', function() {
-                    //    console.log('Upload completed!');
-                    //    //res.setHeader('text/plain');
-                    //    //res.end('Received ' + count + ' files');
-                    //});
-                    //console.log(form.parse);
-                    console.log(req);
                     form.parse(req, function(err, fields, files) {
-                        //console.log(files);
-                        //console.log(files.path);
-                        //同步重命名文件名
-                        //fs.renameSync(files.path,files.originalFilename);
                         res.writeHead(200, {'content-type': 'text/plain'});
                         res.write('received upload:\n\n');
                         res.end(util.inspect({fields: fields, files: files}));
-                        //res.end();
                     });
                 }
                 return;

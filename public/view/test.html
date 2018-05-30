@@ -21,7 +21,7 @@
                 xhr.send(null);
                 a++;
             }else{
-                xhr.open('POST', '/reloadserver', true);
+                xhr.open('POST', '/a', true);
                 xhr.send('config='+config.value);
             }
             xhr.onreadystatechange = function(){

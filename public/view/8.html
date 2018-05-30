@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="Author" contect="GabrielChen">
+    <meta name="keywords" contect="Web Audio API">
+    <title>Web Audio API 学习</title>
+    <script>
+
+
+
+
+    </script>
+    <style>
+        #canvasOne {
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body onload="init();">
+<button id="1">start</button>
+<button id="2">end</button>
+<h1>从audio源获取声音</h1>
+<audio src="./Fatbros.ogg" controls="controls" id="audio">你的浏览器不支持audio标签</audio>
+<h1>audio读取声音</h1>
+<canvas id="canvasFormAudio" width="640"></canvas>
+<h1>频域图模仿</h1>
+<canvas id="canvasOne" width="640"></canvas>
+<h1>圆形声波图</h1>
+<canvas id="canvasTwo" width="800" height="800"></canvas>
+
+<script type="text/javascript" src="../javascripts/8.js"></script>
+</body>
+</html>

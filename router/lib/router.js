@@ -1,18 +1,18 @@
 /**
  * Created by orionwei on 2016/5/11.
  */
-var fs = require('fs');
-var zlib = require("zlib");
-var header = require("./header");
+const fs = require('fs');
+const zlib = require("zlib");
+const header = require("./header");
 
-var routerpool = {};
-var lastModified;
-var compress = /css|js|html/ig;
-var headers = {
+let routerpool = {};
+let lastModified;
+// let compress = /css|js|html/ig;
+const headers = {
     fileMatch: /^(gif|png|jpg|js|css)$/ig,
     maxAge: 60 * 60
 };
-var app = {
+const app = {
     post: function (str, callback) {
         routerpool[str] = callback;
         return this;
@@ -30,12 +30,12 @@ var app = {
         }
     },
     render: function (req, res, str) {
-        var pathname = "public/view/"+str;
+        const pathname = "public/view/"+str;
         fs.stat(pathname, function (err, stat) {
             if(err){
                 console.log(err);
             }else{
-                var raw = fs.createReadStream(pathname);
+                let raw = fs.createReadStream(pathname);
                 lastModified = stat.mtime.toUTCString();
                 res.setHeader("Last-Modified", lastModified);
                 res.setHeader("Cache-Control", "max-age="+headers.maxAge);
@@ -51,16 +51,16 @@ var app = {
     },
     staticFile:function(req,res,str,ext){
         //to Support large files
-        var pathname = "public/"+str;
+        const pathname = "public/"+str;
         fs.exists(pathname,function(exists){
             if(!exists){
                 res.writeHead(404,"Not Found");
                 res.end();
             }else{
-                var raw = fs.createReadStream(pathname);
-                var acceptEncoding = req.headers['accept-encoding'] || "";
-                var matched = ext.match(headers.fileMatch);
-                var expires = new Date();
+                let raw = fs.createReadStream(pathname);
+                let acceptEncoding = req.headers['accept-encoding'] || "";
+                let matched = ext.match(headers.fileMatch);
+                let expires = new Date();
                 expires.setTime(expires.getTime() + headers.maxAge * 1000);
                 res.setHeader("Expires", expires.toUTCString());
                 res.setHeader("Cache-Control", "max-age=" + headers.maxAge);

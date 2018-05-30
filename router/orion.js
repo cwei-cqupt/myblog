@@ -1,7 +1,7 @@
 /**
  * Created by orionwei on 2016/5/11.
  */
-var app = require('./lib/router');
+var app = require('./index');
 //var article = require('./lib/mongodb');
 var fs = require("fs");
 var exec = require('child_process').exec;
@@ -60,3 +60,4 @@ app.get("/",function(req,res){
 .post("/?", function(req, res){
     console.log(req.query);
 });
+app.start(3000);
