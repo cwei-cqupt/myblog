@@ -1,0 +1,36 @@
+/bin/sh: hexo: 未找到命令
+/bin/sh: hexo: 未找到命令
+/bin/sh: hexo: 未找到命令
+/bin/sh: hexo: 未找到命令
+测试博客2.md
+fs.js:113
+    throw err;
+    ^
+
+Error: ENOENT: no such file or directory, open './source/_posts/测试博客2.md'
+    at Object.openSync (fs.js:434:3)
+    at Object.readFileSync (fs.js:339:35)
+    at Object./article_data (/root/workspace/myblog/router/orion.js:67:19)
+    at Object.router (/root/workspace/myblog/router/lib/router.js:25:28)
+    at Server.<anonymous> (/root/workspace/myblog/router/start.js:80:13)
+    at Server.emit (events.js:182:13)
+    at parserOnIncoming (_http_server.js:652:12)
+    at HTTPParser.parserOnHeadersComplete (_http_common.js:109:17)
+listening 80
+/bin/sh: hexo: 未找到命令
+测试博客2.md
+fs.js:113
+    throw err;
+    ^
+
+Error: ENOENT: no such file or directory, open './source/_posts/测试博客2.md'
+    at Object.openSync (fs.js:434:3)
+    at Object.readFileSync (fs.js:339:35)
+    at Object./article_data (/root/workspace/myblog/router/orion.js:67:19)
+    at Object.router (/root/workspace/myblog/router/lib/router.js:25:28)
+    at Server.<anonymous> (/root/workspace/myblog/router/start.js:80:13)
+    at Server.emit (events.js:182:13)
+    at parserOnIncoming (_http_server.js:652:12)
+    at HTTPParser.parserOnHeadersComplete (_http_common.js:109:17)
+listening 80
+listening 80
