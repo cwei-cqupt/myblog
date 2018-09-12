@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Abel(魏丞)的博客
+title: cwei的博客
 subtitle: 金鳞岂是池中物，一遇风云便化龙
 description: 金鳞岂是池中物，一遇风云便化龙。 
 author: Abel
@@ -11,7 +11,7 @@ email: 673162780@qq.com
 keywords: "数据挖掘,前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验"
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://118.126.95.65
+url: http://www.abelvii.cn
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:

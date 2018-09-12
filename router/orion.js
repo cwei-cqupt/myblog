@@ -8,16 +8,7 @@ var fs = require('fs');
 var iconv = require("iconv-lite");
 
 app.get("/manage", function(req,res){
-    if(lib.check(lib.getCookie(req)))
         app.render(req, res, "manage.html");
-    else
-        app.render(req, res, "check.html");
-})
-.get("/editor", function(req,res){
-    if(lib.check(lib.getCookie(req)))
-        app.render(req, res, 'editor.html');
-    else
-        app.render(req, res, "check.html");
 })
 .get("/article_list",function(req,res){
     var post = {
