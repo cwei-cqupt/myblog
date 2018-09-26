@@ -1,18 +1,18 @@
 /**
  * Created by orionwei on 2016/5/11.
  */
-const fs = require('fs');
-const zlib = require("zlib");
-const header = require("./header");
 
-let routerpool = {};
-let lastModified;
-// let compress = /css|js|html/ig;
-const headers = {
-    fileMatch: /^(gif|png|jpg|js|css)$/ig,
+var fs = require('fs');
+var zlib = require("zlib");
+var header = require("./header");
+
+var routerpool = {};
+var lastModified;
+var headers = {
+    fileMatch: /^(gif|png|jpg|js|css|woff|svg|json)$/ig,
     maxAge: 60 * 60
 };
-const app = {
+var app = {
     post: function (str, callback) {
         routerpool[str] = callback;
         return this;
@@ -29,17 +29,17 @@ const app = {
             routerpool["/404"](req, res);
         }
     },
-    render: function (req, res, str) {
-        const pathname = "public/view/"+str;
+    render: function (req, res, str, flag) {
+        var pathname = "public/"+str;
         fs.stat(pathname, function (err, stat) {
             if(err){
                 console.log(err);
             }else{
-                let raw = fs.createReadStream(pathname);
+                var raw = fs.createReadStream(pathname);
                 lastModified = stat.mtime.toUTCString();
                 res.setHeader("Last-Modified", lastModified);
                 res.setHeader("Cache-Control", "max-age="+headers.maxAge);
-                if (req.headers['if-modified-since'] && lastModified == req.headers['if-modified-since']) {
+                if (req.headers['if-modified-since'] && lastModified && flag == req.headers['if-modified-since']) {
                     res.writeHead(304, "Not Modified");
                     res.end();
                 }
@@ -51,16 +51,16 @@ const app = {
     },
     staticFile:function(req,res,str,ext){
         //to Support large files
-        const pathname = "public/"+str;
+        var pathname = "public/"+str;
         fs.exists(pathname,function(exists){
             if(!exists){
                 res.writeHead(404,"Not Found");
                 res.end();
             }else{
-                let raw = fs.createReadStream(pathname);
-                let acceptEncoding = req.headers['accept-encoding'] || "";
-                let matched = ext.match(headers.fileMatch);
-                let expires = new Date();
+                var raw = fs.createReadStream(pathname);
+                var acceptEncoding = req.headers['accept-encoding'] || "";
+                var matched = ext.match(headers.fileMatch);
+                var expires = new Date();
                 expires.setTime(expires.getTime() + headers.maxAge * 1000);
                 res.setHeader("Expires", expires.toUTCString());
                 res.setHeader("Cache-Control", "max-age=" + headers.maxAge);

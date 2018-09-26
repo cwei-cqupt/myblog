@@ -2,6 +2,7 @@
  * Created by orionwei on 2016/5/8.
  */
 var http = require('http');
+var fs = require('fs');
 var url = require('url');
 var path = require("path");
 var querystring = require('querystring');
@@ -9,7 +10,7 @@ var app = require('./lib/router');
 var router = require('./orion');
 var multiparty = require("multiparty");
 var util = require("util");
-
+var iconv = require("iconv-lite");
 
 var port = process.argv[2] || 80,pathN;
 
@@ -26,6 +27,27 @@ http.createServer(function(req, res){
         app.staticFile(req,res,pathN,ext);
     } else if() {
 
+    pathN = decodeURIComponent(pathname.pathname);
+    var ext = path.extname(pathN);
+    var headers = {
+        fileMatch: /^(gif|png|jpg|js|css|html|woff|svg|tff|json)$/ig,
+        maxAge: 60 * 60
+    };
+    var staticFile = ["stylesheets","javascripts","images"];
+    ext = ext ? ext.slice(1) : 'unknown:';
+    if (ext.match(headers.fileMatch)) {
+        for(var i = 0;i < staticFile.length;i++){
+            if(pathN.indexOf(staticFile[i])> -1){
+                pathN = pathN.split("/");
+                pathN = staticFile[i]+"/"+pathN.slice(2,pathN.length).join("/");
+                break;
+            }
+        }
+        app.staticFile(req,res,pathN,ext);
+        return;
+    } else if(fs.existsSync("public/"+pathN+"/index.html")){
+        app.render(req, res, pathN+"index.html")
+        return;
     } else {
         res.send = function(obj,str){
             if(str === 'json'){
@@ -34,7 +56,7 @@ http.createServer(function(req, res){
             }
         };
         if(req.method === 'GET'){
-            req.query = querystring.parse(pathN.query);
+            req.query = querystring.parse(pathname.query);
         }
         else if(req.method === 'POST'){
             if(pathname === "/addArticle"){
