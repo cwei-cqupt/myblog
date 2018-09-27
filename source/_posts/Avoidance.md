@@ -1,7 +1,7 @@
 ---
 title: 回避型依恋
 date: 2018-08-28 19:29:54
-categories: 杂记
+categories: ['杂记']
 tags: ['科普', '记录']
 ---
 

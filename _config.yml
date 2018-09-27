@@ -44,6 +44,9 @@ highlight:
 
 # Category & Tag
 default_category: uncategorized
+categories:
+  - category1
+  - category2
 category_map:
 tag_map:
 tags:
