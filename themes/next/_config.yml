@@ -832,9 +832,9 @@ canvas_nest: false
 # three_waves
 three_waves: false
 # canvas_lines
-canvas_lines: true
+canvas_lines: false
 # canvas_sphere
-canvas_sphere: false
+canvas_sphere: true
 
 # Only fit scheme Pisces
 # Dependencies: https://github.com/theme-next/theme-next-canvas-ribbon
@@ -916,7 +916,7 @@ vendors:
   three:
   three_waves:
   canvas_lines: //cdn.jsdelivr.net/gh/theme-next/theme-next-three@1.0.0/canvas_lines.min.js
-  canvas_sphere:
+  canvas_sphere: //cdn.jsdelivr.net/gh/theme-next/theme-next-three@1.0.0/canvas_sphere.min.js
 
   # Internal version: 1.0.0
   # https://github.com/zproo/canvas-ribbon

@@ -6,7 +6,7 @@
 title: cwei的博客
 subtitle: 金鳞岂是池中物，一遇风云便化龙
 description: 金鳞岂是池中物，一遇风云便化龙。 
-author: Abel
+author: Cwei
 email: 673162780@qq.com
 keywords: "数据挖掘,前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验"
 # URL
@@ -43,7 +43,7 @@ highlight:
   tab_replace:
 
 # Category & Tag
-default_category: uncategorized
+default_category: category1
 categories:
   - category1
   - category2
@@ -95,5 +95,5 @@ jsonContent:
     link: false
     permalink: false
     excerpt: false
-    categories: false
+    categories: true
     tags: true

@@ -2,7 +2,7 @@
 title: tkinter学习之路（二）
 date: 2018-08-22 10:59:23
 categories: 技术
-tags: ['python', 'gui']
+tags: ['Python', 'gui']
 ---
 
 上节书说道，使用after作为实现动画的方式，但是这种方式的弊病有很多，所以又找到了另外的一种实现方式。
